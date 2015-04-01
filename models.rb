@@ -13,8 +13,8 @@ end
 class Topic
   include DataMapper::Resource
   
-  property :id, Serial
-  property :title, String, :key => true
+  property :id,         Serial
+  property :title,      String, :key => true
   property :created_at, DateTime
   
   belongs_to :forum, :model => 'Forum' # weird bug in DataMapper
@@ -25,8 +25,8 @@ end
 class Post
   include DataMapper::Resource
   
-  property :id, Serial
-  property :body, Text
+  property :id,         Serial
+  property :body,       Text
   property :created_at, DateTime
   
   belongs_to :topic
@@ -37,13 +37,14 @@ end
 class User
   include DataMapper::Resource
   
-  property :id, Serial
-  property :login, String, :key => true
-  property :salt, String
-  property :password, String
+  property :id,         Serial
+  property :login,      String, :key => true
+  property :salt,       String
+  property :password,   String
   property :created_at, DateTime
   
   has n, :posts
   
 end
 
+DataMapper.finalize

@@ -20,7 +20,7 @@ get '/users/new' do
 end
 
 post '/users' do
-  unless params[:password] && params[:login] && (params[:password].blank? || params[:login].blank?)
+  unless params[:password] && params[:login] && (params[:password] == '' || params[:login] == '')
     unless User.first(:login => params[:login])
       create_user(params[:login], params[:password])
       redirect '/login'
@@ -31,18 +31,3 @@ post '/users' do
     status 400 and return "Please provide complete information"
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

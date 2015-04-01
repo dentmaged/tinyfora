@@ -4,7 +4,9 @@ $:.unshift File.dirname(__FILE__)
 require 'rubygems'
 require 'sinatra'
 require 'dm-core'
+require 'dm-migrations'
 require 'sinatra/reloader' if development?
+require 'haml'
 
 require 'models'
 
@@ -12,6 +14,7 @@ require 'models'
 
 configure do
   enable :sessions
+  set :session_secret, "ch3ng3 m3!"
   DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/tinyfora.db")
   # DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/tinyfora.db")
   DataMapper::Logger.new(STDOUT, :debug)
@@ -38,5 +41,3 @@ get %r{^/images/(.+)$} do
 end
 
 %w(helpers.rb user_routes.rb forum_routes.rb topic_routes.rb post_routes.rb).each { |f| load f }
-
-

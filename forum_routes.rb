@@ -1,4 +1,4 @@
-# index
+
 get '/forums' do
   @forums = Forum.all
   haml :forums
